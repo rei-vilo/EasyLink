@@ -64,7 +64,11 @@
 
 // Define variables and constants
 // EasyLinkLayer myLink;
+#if (ADDRESS_FILTERING == WITH_ADDRESS_FILTERING)
 EasyLinkLayer myLink(true);
+#else
+EasyLinkLayer myLink;
+#endif
 
 // Node address
 AddressIEEE_t addressNode = { 0x00, 0x12, 0x4B, 0x00, 0x0A, 0x27, 0xCD, 0x6A };
