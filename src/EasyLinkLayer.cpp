@@ -6,12 +6,12 @@
 // https://embedXcode.weebly.com
 //
 // Details	    Additional layer for EasyLink
-// Project 		sub1GHz_TX_Layer
+// Project 		sub1GHz Layer
 //
-// Created by 	Rei Vilo, 05 Nov 2019 11:00
+// Created by 	Rei Vilo, 05 Nov 2019
 // 				Rei Vilo
 //
-// Copyright 	(c) Rei Vilo, 2019
+// Copyright 	(c) Rei Vilo, 2019-2020
 // Licence		CC = BY SA NC
 //
 // See 			EasyLinkLayer.h and ReadMe.txt for references
@@ -49,6 +49,11 @@ EasyLink_Status EasyLinkLayer::begin()
         EasyLink_setCtrl(EasyLink_Ctrl_AddSize, EASYLINK_MAX_ADDR_SIZE);
         // Declare the authorised receiving addresses array
         status = EasyLink_enableRxAddrFilter((uint8_t*)&_addressFilter, EASYLINK_MAX_ADDR_SIZE, EASYLINK_MAX_ADDR_FILTERS);
+    }
+    else
+    {
+        // Not set by default on CC13x2
+        txPacket.dstAddr[0] = 0xaa;
     }
 
     return status;
